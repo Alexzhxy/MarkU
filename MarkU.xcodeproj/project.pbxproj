@@ -20,6 +20,7 @@
 		CA88328A1BD33DB700583BA2 /* FavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8832871BD33DB700583BA2 /* FavoriteTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		CA88328B1BD33DB700583BA2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8832881BD33DB700583BA2 /* MapViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		CA88328C1BD33DB700583BA2 /* SaveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8832891BD33DB700583BA2 /* SaveViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		CA88328E1BD34CCB00583BA2 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA88328D1BD34CCB00583BA2 /* NavigationViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		CA8832871BD33DB700583BA2 /* FavoriteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewController.swift; sourceTree = "<group>"; };
 		CA8832881BD33DB700583BA2 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		CA8832891BD33DB700583BA2 /* SaveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveViewController.swift; sourceTree = "<group>"; };
+		CA88328D1BD34CCB00583BA2 /* NavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 				CA8832871BD33DB700583BA2 /* FavoriteTableViewController.swift */,
 				CA8832881BD33DB700583BA2 /* MapViewController.swift */,
 				CA8832891BD33DB700583BA2 /* SaveViewController.swift */,
+				CA88328D1BD34CCB00583BA2 /* NavigationViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA88328E1BD34CCB00583BA2 /* NavigationViewController.swift in Sources */,
 				CA88328A1BD33DB700583BA2 /* FavoriteTableViewController.swift in Sources */,
 				CA88328B1BD33DB700583BA2 /* MapViewController.swift in Sources */,
 				CA8832861BD33DA500583BA2 /* Global.swift in Sources */,

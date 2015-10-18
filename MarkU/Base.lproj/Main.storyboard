@@ -30,7 +30,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="MarkU" id="3QN-Nb-43P">
-                        <barButtonItem key="leftBarButtonItem" systemItem="search" id="QxB-9q-KSH">
+                        <barButtonItem key="leftBarButtonItem" systemItem="bookmarks" id="QxB-9q-KSH">
                             <connections>
                                 <segue destination="bbB-aX-XC1" kind="show" id="JXz-gQ-vq8"/>
                             </connections>
@@ -123,10 +123,52 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="FavoritesItem" id="Ylu-Hm-ulX" userLabel="FavoriteItem"/>
                     <navigationItem key="navigationItem" title="Favorites" id="yW2-Py-Hb0" userLabel="Favorite"/>
+                    <connections>
+                        <segue destination="9UA-g8-2td" kind="show" identifier="FavoriteToNavigationSegue" id="Ydi-qS-Jre"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lTh-yX-xfR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="968" y="-1480"/>
+        </scene>
+        <!--Navigation-->
+        <scene sceneID="BDd-hE-ATh">
+            <objects>
+                <viewController id="9UA-g8-2td" customClass="NavigationViewController" customModule="MarkU" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xjE-9J-Uqn"/>
+                        <viewControllerLayoutGuide type="bottom" id="Wvy-BP-cSm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AGb-YW-c4U">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="n9a-ua-VVi" userLabel="Navigation Map View">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="n9a-ua-VVi" secondAttribute="trailing" constant="-20" id="IGd-1v-m5b"/>
+                            <constraint firstItem="Wvy-BP-cSm" firstAttribute="top" secondItem="n9a-ua-VVi" secondAttribute="bottom" id="Oni-Sh-Czr"/>
+                            <constraint firstItem="n9a-ua-VVi" firstAttribute="leading" secondItem="AGb-YW-c4U" secondAttribute="leadingMargin" constant="-20" id="ZhE-Ae-3FF"/>
+                            <constraint firstItem="n9a-ua-VVi" firstAttribute="top" secondItem="xjE-9J-Uqn" secondAttribute="bottom" id="sC5-ml-RmV"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Navigation" id="zqv-iH-Had">
+                        <barButtonItem key="rightBarButtonItem" title="Open Maps App" id="idg-M3-PjD">
+                            <connections>
+                                <action selector="OpenMapsApp:" destination="9UA-g8-2td" id="qH9-jU-jWM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="NavigationMapView" destination="n9a-ua-VVi" id="2jm-fh-7bw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8E0-Pc-eWx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1720" y="-1480"/>
         </scene>
         <!--Map Navigation Controller-->
         <scene sceneID="t2Y-xX-tFs">
@@ -149,6 +191,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="AZ0-3z-vqr"/>
+        <segue reference="JXz-gQ-vq8"/>
     </inferredMetricsTieBreakers>
 </document>

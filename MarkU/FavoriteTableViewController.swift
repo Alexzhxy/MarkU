@@ -8,9 +8,13 @@
 
 import UIKit
 import CoreData
+import CoreLocation
+import MapKit
 
 class FavoriteTableViewController: UITableViewController {
 
+    var destinationCoordinate: CLLocationCoordinate2D?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -94,9 +98,16 @@ class FavoriteTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //let vc: UIViewController = storyboard!.instantiateViewControllerWithIdentifier("Test") as UIViewController
-        //self.presentViewController(vc, animated: false, completion: nil)
-        //self.performSegueWithIdentifier("FavoritesTableItemSegue", sender: self)
+        destinationCoordinate = CLLocationCoordinate2DMake(g_favoriteItems[indexPath.row].valueForKey("latitude") as! Double, g_favoriteItems[indexPath.row].valueForKey("longitude") as! Double)
+        self.performSegueWithIdentifier("FavoriteToNavigationSegue", sender: self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "FavoriteToNavigationSegue" {
+            let navigationVC: NavigationViewController = segue.destinationViewController as! NavigationViewController
+            navigationVC.destinationCoordinate = destinationCoordinate
+        }
+           
     }
 
 }
