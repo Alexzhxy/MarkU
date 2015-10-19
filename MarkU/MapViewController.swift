@@ -16,14 +16,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
     
     @IBOutlet weak var mapView: MKMapView!
     
-    let locationManager = CLLocationManager()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.requestLocation()
+        
+        g_locationManager.delegate = self
+        g_locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+        g_locationManager.requestWhenInUseAuthorization()
+        g_locationManager.requestLocation()
+    }
+    
+    override func viewWillAppear(animated: Bool){
+        g_locationManager.requestLocation()
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -38,11 +41,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
             let coordinateRegion = MKCoordinateRegion(center: locationCoordinate!, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
             mapView.setRegion(coordinateRegion, animated: true)
             
+            mapView.removeAnnotations(mapView.annotations)
             let dropPin = MKPointAnnotation()
             dropPin.coordinate = locationCoordinate!
             dropPin.title = "Your Position"
             mapView.addAnnotation(dropPin)
         }
+        g_locationManager.stopUpdatingLocation()
     }
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {

@@ -12,5 +12,6 @@ import CoreData
 
 var g_locationCoordinate: CLLocation? = nil
 var g_favoriteItems = [NSManagedObject]()
+let g_locationManager = CLLocationManager()
 
 
