@@ -24,7 +24,6 @@ class NavigationViewController: UIViewController, MKMapViewDelegate{
         
         let request = MKDirectionsRequest()
         request.source = MKMapItem(placemark: MKPlacemark(coordinate: (g_locationCoordinate?.coordinate)!, addressDictionary: nil))
-        //request.destination = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2DMake(37, -122), addressDictionary: nil))
         request.destination = MKMapItem(placemark: MKPlacemark(coordinate: destinationCoordinate!, addressDictionary: nil))
         request.requestsAlternateRoutes = true
         request.transportType = .Automobile
@@ -41,7 +40,6 @@ class NavigationViewController: UIViewController, MKMapViewDelegate{
         }
         
         let srcPin = MKPointAnnotation()
-        //srcPin.coordinate = CLLocationCoordinate2DMake(37, -122)
         srcPin.coordinate = (g_locationCoordinate?.coordinate)!
         srcPin.title = "Your Position"
         navigationMapView.addAnnotation(srcPin)
@@ -57,6 +55,7 @@ class NavigationViewController: UIViewController, MKMapViewDelegate{
         // Dispose of any resources that can be recreated.
     }
     
+    // route renderer
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(polyline: overlay as! MKPolyline)
         renderer.strokeColor = UIColor.blueColor()
@@ -66,14 +65,14 @@ class NavigationViewController: UIViewController, MKMapViewDelegate{
     @IBAction func OpenMapsApp(sender: AnyObject) {
         
         let regionDistance:CLLocationDistance = 10000
-        var coordinates = destinationCoordinate!
+        let coordinates = destinationCoordinate!
         let regionSpan = MKCoordinateRegionMakeWithDistance(coordinates, regionDistance, regionDistance)
-        var options = [
+        let options = [
             MKLaunchOptionsMapCenterKey: NSValue(MKCoordinate: regionSpan.center),
             MKLaunchOptionsMapSpanKey: NSValue(MKCoordinateSpan: regionSpan.span)
         ]
-        var placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
-        var mapItem = MKMapItem(placemark: placemark)
+        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
         mapItem.name = "Your Destination"
         mapItem.openInMapsWithLaunchOptions(options)
         

@@ -10,8 +10,8 @@ import UIKit
 import CoreLocation
 import CoreData
 
-var g_locationCoordinate: CLLocation? = nil
-var g_favoriteItems = [NSManagedObject]()
-let g_locationManager = CLLocationManager()
+var g_locationCoordinate: CLLocation? = nil // share current location
+var g_favoriteItems = [NSManagedObject]()   // saved favorite places
+let g_locationManager = CLLocationManager() // location manager
 
 

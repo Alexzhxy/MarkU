@@ -18,28 +18,25 @@ class FavoriteTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var nib = UINib(nibName: "FavoriteTableViewCell", bundle: nil)
+        // add customized table cell
+        let nib = UINib(nibName: "FavoriteTableViewCell", bundle: nil)
         self.tableView.registerNib(nib, forCellReuseIdentifier: "FavoriteTableViewCell")
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        //1
+        loadSavedFavoriteItems()
+    }
+    
+    // load Core Data to memory
+    private func loadSavedFavoriteItems(){
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
         let managedContext = appDelegate.managedObjectContext
         
-        //2
         let fetchRequest = NSFetchRequest(entityName: "FavoriteItem")
         
-        //3
         do {
             let results =
             try managedContext.executeFetchRequest(fetchRequest)
@@ -58,7 +55,6 @@ class FavoriteTableViewController: UITableViewController {
 
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return g_favoriteItems.count
     }
 
@@ -73,12 +69,13 @@ class FavoriteTableViewController: UITableViewController {
         dateFormatter.timeStyle = NSDateFormatterStyle.MediumStyle
         let dateString = dateFormatter.stringFromDate((favoriteItem.valueForKey("date") as? NSDate)!)
         
-        cell.position.text = favoriteItem.valueForKey("position") as! String
+        cell.position.text = favoriteItem.valueForKey("position") as? String
         cell.timeStamp.text = dateString
         
         return cell
     }
     
+    // swipe to delete
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -97,6 +94,7 @@ class FavoriteTableViewController: UITableViewController {
         }
     }
     
+    // select table cell
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         destinationCoordinate = CLLocationCoordinate2DMake(g_favoriteItems[indexPath.row].valueForKey("latitude") as! Double, g_favoriteItems[indexPath.row].valueForKey("longitude") as! Double)
         self.performSegueWithIdentifier("FavoriteToNavigationSegue", sender: self)
